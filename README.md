@@ -8,6 +8,7 @@ Will you be the hero of your own tech tale, or will you fall victim to the next 
 
 The backend of the game is structured as follows:
 
+```plaintext
 game-backend/
 ├── main.go               // enter
 ├── handlers/             // HTTP handlers
@@ -17,6 +18,7 @@ game-backend/
 │   ├── event.go
 └── services/             // b logic
 └── game_service.go
+```
 
 ## Features
 
