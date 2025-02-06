@@ -1,11 +1,11 @@
 package bootstrap
 
 import (
+	"CtrlAltDestiny/internal/config"
+	migrator "CtrlAltDestiny/internal/pkg"
+	"CtrlAltDestiny/migrations"
 	"context"
 	"fmt"
-	"github.com/spleeroosh/CtrlAltDestiny/internal/config"
-	migrator "github.com/spleeroosh/CtrlAltDestiny/internal/pkg"
-	"github.com/spleeroosh/CtrlAltDestiny/migrations"
 	"strings"
 
 	"github.com/jackc/pgx/v5/stdlib"

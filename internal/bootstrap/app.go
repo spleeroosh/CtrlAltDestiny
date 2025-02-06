@@ -1,12 +1,13 @@
 package bootstrap
 
 import (
+	"CtrlAltDestiny/internal/config"
+	"CtrlAltDestiny/internal/pkg/application"
+	"CtrlAltDestiny/internal/pkg/routerfx"
+	"CtrlAltDestiny/internal/pkg/serverfx"
 	"fmt"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/spleeroosh/CtrlAltDestiny/internal/config"
-	"github.com/spleeroosh/CtrlAltDestiny/internal/pkg/application"
-	"github.com/spleeroosh/CtrlAltDestiny/internal/pkg/routerfx"
-	"github.com/spleeroosh/CtrlAltDestiny/internal/pkg/serverfx"
+
 	"go.uber.org/fx"
 )
 
@@ -24,8 +25,8 @@ var providers = []any{
 	newLogger,
 	newHTTPServer,
 	newPostgresClient,
-	// Регистрация роутов
-	fx.Annotate(wsapi.NewRoutes, fx.As(new(routerfx.Provider)), fx.ResultTags(`group:"providers"`)),
+	//// Регистрация роутов
+	//fx.Annotate(wsapi.NewRoutes, fx.As(new(routerfx.Provider)), fx.ResultTags(`group:"providers"`)),
 	// Коллектор роутов
 	fx.Annotate(routerfx.NewRouter, fx.ParamTags(`group:"providers"`)),
 }

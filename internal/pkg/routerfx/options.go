@@ -1,11 +1,10 @@
 package routerfx
 
 import (
-	"log"
 	"time"
 
+	"CtrlAltDestiny/internal/pkg/logger"
 	"github.com/gin-gonic/gin"
-	"github.com/spleeroosh/CtrlAltDestiny/internal/pkg/logger"
 )
 
 type Option func(o *options)
@@ -49,7 +48,7 @@ func Env(env string) Option {
 	}
 }
 
-func Logger(logger log.Logger) Option {
+func Logger(logger logger.Logger) Option {
 	return func(o *options) {
 		o.logger = logger
 	}

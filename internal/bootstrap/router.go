@@ -1,9 +1,9 @@
 package bootstrap
 
 import (
+	"CtrlAltDestiny/internal/config"
+	"CtrlAltDestiny/internal/pkg/routerfx"
 	"github.com/gin-gonic/gin"
-	"github.com/spleeroosh/CtrlAltDestiny/internal/config"
-	"github.com/spleeroosh/CtrlAltDestiny/internal/pkg/routerfx"
 )
 
 func newHTTPRouter(conf config.Config) *gin.Engine {

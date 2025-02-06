@@ -1,9 +1,9 @@
 package bootstrap
 
 import (
-	"github.com/spleeroosh/CtrlAltDestiny/internal/config"
-	"github.com/spleeroosh/CtrlAltDestiny/internal/pkg/application"
-	"github.com/spleeroosh/CtrlAltDestiny/internal/pkg/logger"
+	"CtrlAltDestiny/internal/config"
+	"CtrlAltDestiny/internal/pkg/application"
+	"CtrlAltDestiny/internal/pkg/logger"
 )
 
 func newLogger(conf config.Config, buildVersion application.BuildVersion) logger.Logger {

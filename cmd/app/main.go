@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/spleeroosh/CtrlAltDestiny/internal/bootstrap"
+	"CtrlAltDestiny/internal/bootstrap"
 )
 
 func main() {
