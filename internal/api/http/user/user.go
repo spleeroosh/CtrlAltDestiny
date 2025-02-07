@@ -9,7 +9,7 @@ import (
 	"CtrlAltDestiny/internal/config"
 	"CtrlAltDestiny/internal/entity"
 
-	"CtrlAltDestiny/internal/pkg/logger"
+	"CtrlAltDestiny/internal/pkg/log"
 	cache "github.com/chenyahui/gin-cache"
 	"github.com/chenyahui/gin-cache/persist"
 	"github.com/gin-gonic/gin"
@@ -19,14 +19,14 @@ const defaultCacheTTL = 500 * time.Millisecond
 
 type Routes struct {
 	manager     Manager
-	logger      logger.Logger
+	log         log.Logger
 	middlewares []gin.HandlerFunc
 }
 
-func NewRoutes(conf config.Config, manager Manager, logger logger.Logger) *Routes {
+func NewRoutes(conf config.Config, manager Manager, log log.Logger) *Routes {
 	return &Routes{
 		manager: manager,
-		logger:  logger,
+		log:     log,
 		//middlewares: []gin.HandlerFunc{
 		//	jwt.New(
 		//		jwt.HMACSecret([]byte(conf.App.AuthSecret)),
@@ -57,13 +57,13 @@ func (r *Routes) Apply(e *gin.Engine) {
 func (r *Routes) getUser(c *gin.Context) {
 	userID, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		r.logger.Err(err).Msg("invalid user id")
+		r.log.Err(err).Msg("invalid user id")
 		return
 	}
 
 	user, err := r.manager.GetUser(c.Request.Context(), userID)
 	if err != nil {
-		r.logger.Err(err).Msg("could not get user")
+		r.log.Err(err).Msg("could not get user")
 		return
 	}
 
@@ -73,7 +73,7 @@ func (r *Routes) getUser(c *gin.Context) {
 func (r *Routes) createUser(c *gin.Context) {
 	var model request.User
 	if err := c.ShouldBindJSON(&model); err != nil {
-		r.logger.Err(err).Msg("invalid user model")
+		r.log.Err(err).Msg("invalid user model")
 		return
 	}
 
@@ -83,7 +83,7 @@ func (r *Routes) createUser(c *gin.Context) {
 		Social: model.Social,
 	})
 	if err != nil {
-		r.logger.Err(err).Msg("could not create new user")
+		r.log.Err(err).Msg("could not create new user")
 		return
 	}
 
@@ -93,13 +93,13 @@ func (r *Routes) createUser(c *gin.Context) {
 func (r *Routes) updateUser(c *gin.Context) {
 	userID, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		r.logger.Err(err).Msg("invalid user ID")
+		r.log.Err(err).Msg("invalid user ID")
 		return
 	}
 
 	var model request.User
 	if err = c.ShouldBindJSON(&model); err != nil {
-		r.logger.Err(err).Msg("invalid user model")
+		r.log.Err(err).Msg("invalid user model")
 		return
 	}
 
@@ -110,7 +110,7 @@ func (r *Routes) updateUser(c *gin.Context) {
 		Social: model.Social,
 	})
 	if err != nil {
-		r.logger.Err(err).Msg("could not update user")
+		r.log.Err(err).Msg("could not update user")
 		return
 	}
 
@@ -120,12 +120,12 @@ func (r *Routes) updateUser(c *gin.Context) {
 func (r *Routes) deleteUser(c *gin.Context) {
 	userID, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		r.logger.Err(err).Msg("invalid user ID")
+		r.log.Err(err).Msg("invalid user ID")
 		return
 	}
 
 	if err := r.manager.DeleteUser(c.Request.Context(), userID); err != nil {
-		r.logger.Err(err).Msg("could not delete user")
+		r.log.Err(err).Msg("could not delete user")
 		return
 	}
 

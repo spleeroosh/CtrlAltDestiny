@@ -10,7 +10,7 @@ import (
 type Option func(o *options)
 
 type options struct {
-	logger                 logger.Logger
+	logger                 log.Logger
 	env                    string
 	middlewares            []gin.HandlerFunc
 	handleMethodNotAllowed bool
@@ -48,7 +48,7 @@ func Env(env string) Option {
 	}
 }
 
-func Logger(logger logger.Logger) Option {
+func Logger(logger log.Logger) Option {
 	return func(o *options) {
 		o.logger = logger
 	}

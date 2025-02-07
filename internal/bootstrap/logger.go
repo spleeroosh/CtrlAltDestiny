@@ -6,14 +6,14 @@ import (
 	"CtrlAltDestiny/internal/pkg/logger"
 )
 
-func newLogger(conf config.Config, buildVersion application.BuildVersion) logger.Logger {
-	return logger.NewLogger(
+func newLogger(conf config.Config, buildVersion application.BuildVersion) log.Logger {
+	return log.NewLogger(
 		conf.App.Name,
-		logger.WithEnv(conf.App.Environment),
-		logger.WithLevel(logger.Level(conf.App.LogLevel)),
-		logger.WithBuildCommit(buildVersion.Commit),
-		logger.WithBuildTime(buildVersion.Time),
-		logger.WithPrettify(conf.App.PrettyLogs),
-		logger.WithOverrideStdLogOut(true),
+		log.WithEnv(conf.App.Environment),
+		log.WithLevel(log.Level(conf.App.LogLevel)),
+		log.WithBuildCommit(buildVersion.Commit),
+		log.WithBuildTime(buildVersion.Time),
+		log.WithPrettify(conf.App.PrettyLogs),
+		log.WithOverrideStdLogOut(true),
 	)
 }
